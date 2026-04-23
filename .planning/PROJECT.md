@@ -4,7 +4,7 @@
 
 A single-page scrollytelling website that pitches a research agenda on substance use disorder (SUD) treatment access in US and German prisons to a funder audience. The site moves a reader through a narrative arc — from the scale of the crisis, to what the evidence shows, to barriers, to research gaps, and finally to a funding call to action. Built as a single HTML file with no build tools; opens directly in a browser.
 
-**Target audience:** Research funders, public health advocates, policy stakeholders who are aware of the issue but not of its severity.
+**Target audience:** Research funders, public health advocates, policy stakeholders who are aware of the issue but not of its severity. Also will offer option of small one time donations. 
 
 ## Core Value
 
