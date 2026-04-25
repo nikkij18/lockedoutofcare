@@ -491,7 +491,10 @@
       transition: background 0.25s;
     }
     .accordion-header:hover { background: rgba(255,255,255,0.04); }
+    .accordion-header:hover .acc-title { color: var(--gold); }
     .accordion-item.open > .accordion-header { background: rgba(255,255,255,0.03); }
+    .accordion-item.open > .accordion-header .acc-title { color: var(--gold); }
+    .acc-title { transition: color 0.25s; }
     .acc-title {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(2rem, 5vw, 4rem);
@@ -808,6 +811,23 @@
         </div>
       </div>
     </div>
+
+    <div class="pull-quote reveal">
+      <div class="pull-quote-photo">
+        <img src="portrait.jpg" alt="Portrait of a woman standing near a waterfront, looking directly into the camera." />
+        <p class="photo-disclaimer">Photo used for illustrative purposes only. The individual pictured is not Brenda Smith and has no connection to this case or the research described on this site.</p>
+      </div>
+      <div class="pull-quote-text">
+        <blockquote>"You're doing it because your freedom is on the line."</blockquote>
+        <cite>Iacobelli et al., 2026 &nbsp;·&nbsp; on participation motivation in therapeutic incarceration programs</cite>
+        <div class="pull-quote-body">
+          <p>Incarceration strips away nearly every freedom a person has: freedom of movement, of association, of privacy, of time. What remains is often a narrow set of choices made within an institution that was not designed with health or recovery in mind.</p>
+          <p>For people with substance use disorder, one of those remaining choices is whether to engage with whatever treatment — if any — is available. The research is unambiguous: when treatment is offered, people participate. But in the US, access is not a right. It is a coincidence of geography, facility policy, and budget. Most people in custody with opioid use disorder receive nothing.</p>
+          <p>The quote above captures what participation often feels like from the inside: not a choice made in the interest of health, but a calculation made under coercion. That is not a therapeutic relationship. It is what happens when the only leverage available is freedom itself.</p>
+          <p>Consider what that looks like in practice. Brenda Smith had been in recovery for five years. On buprenorphine, she had not relapsed once — she had regained custody of her four children, found stable housing, and held a job. Then she was sentenced to 40 days in a Maine county jail. Administrators told her the medication was contraband. She had to sue to keep her prescription. She won — but most people never get a lawyer. <span style="font-family:'DM Mono',monospace;font-size:0.8em;opacity:0.6;">Smith v. Aroostook County, ACLU of Maine (2019)</span></p>
+        </div>
+      </div>
+    </div>
       </div>
     </div>
   </div>
@@ -862,23 +882,6 @@
         <div class="card-stat stat-blue">17%</div>
         <p class="card-body">Reduction in recidivism among completers of Germany's Section 64 therapeutic incarceration program treatment as a legal pathway, not a privilege.</p>
         <p class="card-source">Schalast et al., 2025</p>
-      </div>
-    </div>
-
-    <div class="pull-quote reveal">
-      <div class="pull-quote-photo">
-        <img src="portrait.jpg" alt="Portrait of a woman standing near a waterfront, looking directly into the camera." />
-        <p class="photo-disclaimer">Photo used for illustrative purposes only. The individual pictured is not Brenda Smith and has no connection to this case or the research described on this site.</p>
-      </div>
-      <div class="pull-quote-text">
-        <blockquote>"You're doing it because your freedom is on the line."</blockquote>
-        <cite>Iacobelli et al., 2026 &nbsp;·&nbsp; on participation motivation in therapeutic incarceration programs</cite>
-        <div class="pull-quote-body">
-          <p>Incarceration strips away nearly every freedom a person has: freedom of movement, of association, of privacy, of time. What remains is often a narrow set of choices made within an institution that was not designed with health or recovery in mind.</p>
-          <p>For people with substance use disorder, one of those remaining choices is whether to engage with whatever treatment — if any — is available. The research is unambiguous: when treatment is offered, people participate. But in the US, access is not a right. It is a coincidence of geography, facility policy, and budget. Most people in custody with opioid use disorder receive nothing.</p>
-          <p>The quote above captures what participation often feels like from the inside: not a choice made in the interest of health, but a calculation made under coercion. That is not a therapeutic relationship. It is what happens when the only leverage available is freedom itself.</p>
-          <p>Consider what that looks like in practice. Brenda Smith had been in recovery for five years. On buprenorphine, she had not relapsed once — she had regained custody of her four children, found stable housing, and held a job. Then she was sentenced to 40 days in a Maine county jail. Administrators told her the medication was contraband. She had to sue to keep her prescription. She won — but most people never get a lawyer. <span style="font-family:'DM Mono',monospace;font-size:0.8em;opacity:0.6;">Smith v. Aroostook County, ACLU of Maine (2019)</span></p>
-        </div>
       </div>
     </div>
       </div>
