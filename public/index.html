@@ -221,27 +221,35 @@
     }
 
     /* Bar chart */
-    .bar-section { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+    .bar-section {
+      margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
     .bar-label-title {
       font-family: 'DM Mono', monospace;
-      font-size: 10px;
+      font-size: 12px;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.2em;
       margin-bottom: 1.75rem;
+      text-align: center;
     }
-    .bar-row { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1rem; }
+    .bar-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.2rem; }
     .bar-country {
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-size: 13px;
       color: var(--muted);
-      min-width: 110px;
+      min-width: 132px;
       text-align: right;
     }
     .bar-track {
       flex: 1;
       background: var(--bg3);
-      height: 38px;
+      height: 46px;
       border-radius: 2px;
       overflow: hidden;
     }
@@ -252,21 +260,21 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      padding-right: 0.625rem;
+      padding-right: 0.75rem;
       transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .bar-red { background: var(--red); }
     .bar-blue { background: var(--blue); }
     .bar-val {
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-size: 13px;
       color: #fff;
       font-weight: 500;
       white-space: nowrap;
     }
     .bar-footnote {
       font-family: 'DM Mono', monospace;
-      font-size: 9px;
+      font-size: 11px;
       color: var(--muted);
       margin-top: 0.5rem;
     }
@@ -680,28 +688,6 @@
           <p>The gap between what treatment science recommends and what facilities deliver is not a resource problem. It is a policy problem and one that comparative research is positioned to solve.</p>
         </div>
 
-        <!-- Bar Chart -->
-        <div class="bar-section reveal" id="bar-section">
-          <p class="bar-label-title">National incarceration rate per 100,000 population (aggregate)</p>
-          <div class="bar-row">
-            <span class="bar-country">United States</span>
-            <div class="bar-track">
-              <div class="bar bar-red" data-target="90.3">
-                <span class="bar-val">542</span>
-              </div>
-            </div>
-          </div>
-          <div class="bar-row">
-            <span class="bar-country">Germany</span>
-            <div class="bar-track">
-              <div class="bar bar-blue" data-target="13">
-                <span class="bar-val">78</span>
-              </div>
-            </div>
-          </div>
-          <p class="bar-footnote">Sources: Bureau of Justice Statistics, 2022; World Prison Brief, 2022</p>
-          <p class="bar-footnote">US figure reflects the national aggregate across all state and federal facilities. Individual state rates range from ~150 (MA) to ~730 (LA) — see choropleth above.</p>
-        </div>
       </div>
 
       <!-- Germany sidebar -->
@@ -714,6 +700,29 @@
           <p class="sidebar-source">Source: World Prison Brief, 2022</p>
         </div>
       </div>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="bar-section reveal" id="bar-section">
+      <p class="bar-label-title">National incarceration rate per 100,000 population (aggregate)</p>
+      <div class="bar-row">
+        <span class="bar-country">United States</span>
+        <div class="bar-track">
+          <div class="bar bar-red" data-target="90.3">
+            <span class="bar-val">542</span>
+          </div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-country">Germany</span>
+        <div class="bar-track">
+          <div class="bar bar-blue" data-target="13">
+            <span class="bar-val">78</span>
+          </div>
+        </div>
+      </div>
+      <p class="bar-footnote">Sources: Bureau of Justice Statistics, 2022; World Prison Brief, 2022</p>
+      <p class="bar-footnote">US figure reflects the national aggregate across all state and federal facilities. Individual state rates range from ~150 (MA) to ~730 (LA) — see choropleth above.</p>
     </div>
 
     <!-- US Map full bleed, centered -->
