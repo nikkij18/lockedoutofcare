@@ -379,6 +379,19 @@
       filter: grayscale(100%);
       display: block;
     }
+    .photo-disclaimer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.25rem 1rem;
+      background: linear-gradient(transparent, rgba(10,10,10,0.75));
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: rgba(240,234,216,0.45);
+      text-align: center;
+      line-height: 1.6;
+    }
     .pull-quote-text {
       padding: 5rem var(--pad-h);
       display: flex;
@@ -720,7 +733,7 @@
         </div>
       </div>
       <p class="bar-footnote">Sources: Bureau of Justice Statistics, 2022; World Prison Brief, 2022</p>
-      <p class="bar-footnote">US figure reflects the national aggregate across all state and federal facilities. Individual state rates range from ~150 (MA) to ~730 (LA) — see choropleth above.</p>
+      <p class="bar-footnote">US figure reflects the national aggregate across all state and federal facilities. Individual state rates range from ~150 (MA) to ~730 (LA) — see choropleth below.</p>
     </div>
 
     <!-- US Map full bleed, centered -->
@@ -793,6 +806,7 @@
     <div class="pull-quote reveal">
       <div class="pull-quote-photo">
         <img src="portrait.jpg" alt="Portrait of a woman standing near a waterfront, looking directly into the camera." />
+        <p class="photo-disclaimer">Photo used for illustrative purposes only. The individual pictured is not Brenda Smith and has no connection to this case or the research described on this site.</p>
       </div>
       <div class="pull-quote-text">
         <blockquote>"You're doing it because your freedom is on the line."</blockquote>
@@ -801,6 +815,7 @@
           <p>Incarceration strips away nearly every freedom a person has: freedom of movement, of association, of privacy, of time. What remains is often a narrow set of choices made within an institution that was not designed with health or recovery in mind.</p>
           <p>For people with substance use disorder, one of those remaining choices is whether to engage with whatever treatment — if any — is available. The research is unambiguous: when treatment is offered, people participate. But in the US, access is not a right. It is a coincidence of geography, facility policy, and budget. Most people in custody with opioid use disorder receive nothing.</p>
           <p>The quote above captures what participation often feels like from the inside: not a choice made in the interest of health, but a calculation made under coercion. That is not a therapeutic relationship. It is what happens when the only leverage available is freedom itself.</p>
+          <p>Consider what that looks like in practice. Brenda Smith had been in recovery for five years. On buprenorphine, she had not relapsed once — she had regained custody of her four children, found stable housing, and held a job. Then she was sentenced to 40 days in a Maine county jail. Administrators told her the medication was contraband. She had to sue to keep her prescription. She won — but most people never get a lawyer. <span style="font-family:'DM Mono',monospace;font-size:0.8em;opacity:0.6;">Smith v. Aroostook County, ACLU of Maine (2019)</span></p>
         </div>
       </div>
     </div>
@@ -978,6 +993,7 @@
         <li>Tomlin, K. (2024). Correctional staff attitudes toward MAT.</li>
         <li>World Prison Brief (2022). International incarceration rate comparisons.</li>
         <li>Bureau of Justice Statistics (2022). Prisoners in the United States.</li>
+        <li>Smith v. Aroostook County, ACLU of Maine (2019). MAT access lawsuit, Maine county jail.</li>
       </ul>
     </div>
   </footer>
