@@ -230,7 +230,7 @@
     }
     .legend-bar {
       width: 200px; height: 12px; border-radius: 6px;
-      background: linear-gradient(to right, rgb(30,8,8), rgb(192,57,43));
+      background: linear-gradient(to right, rgb(200,130,110), rgb(120,10,5));
     }
 
     /* Bar chart */
@@ -1656,7 +1656,8 @@
 
     function rateColor(rate) {
       const t = Math.max(0, Math.min((rate - 100) / 600, 1));
-      return `rgb(${Math.round(30+(192-30)*t)},${Math.round(8+(57-8)*t)},${Math.round(8+(43-8)*t)})`;
+      // low rate = light salmon, high rate = deep dark crimson
+      return `rgb(${Math.round(200+(120-200)*t)},${Math.round(130+(10-130)*t)},${Math.round(110+(5-110)*t)})`;
     }
 
     const panel = document.getElementById('map-panel');
