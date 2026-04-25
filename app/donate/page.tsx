@@ -25,7 +25,7 @@ export default function DonatePage() {
           <ArrowLeft className="h-4 w-4" />
           Back to site
         </a>
-        <span className="text-sm font-semibold tracking-widest uppercase text-muted-foreground">
+        <span className="text-sm tracking-widest uppercase text-muted-foreground font-[family-name:var(--font-dm-mono)]">
           Locked Out of Care
         </span>
       </header>
@@ -42,7 +42,7 @@ export default function DonatePage() {
             >
               <CheckCircle className="h-16 w-16 text-primary" />
               <div>
-                <h2 className="text-2xl font-semibold">Thank you.</h2>
+                <h2 className="text-2xl font-bold font-[family-name:var(--font-playfair)]">Thank you.</h2>
                 <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
                   Your ${amount.toFixed(2)} donation directly supports research
                   access and dissemination. Every dollar helps make the case for
@@ -66,10 +66,10 @@ export default function DonatePage() {
             >
               {/* Pitch */}
               <div>
-                <p className="text-xs font-mono tracking-widest uppercase text-muted-foreground mb-2">
+                <p className="text-xs tracking-widest uppercase text-primary mb-2 font-[family-name:var(--font-dm-mono)]">
                   One-Time Donation
                 </p>
-                <h1 className="text-3xl font-bold leading-tight">
+                <h1 className="text-4xl font-bold leading-tight font-[family-name:var(--font-playfair)]">
                   Fund the evidence.<br />Change the policy.
                 </h1>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
