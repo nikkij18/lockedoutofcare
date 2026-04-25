@@ -526,7 +526,7 @@
 
     /* Germany */
     #germany { background: var(--bg2); }
-    .de-intro { max-width: 700px; margin-bottom: 3rem; }
+    .de-intro { margin-bottom: 3rem; }
     .de-intro h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1rem; }
     .de-intro-sub { font-size: 0.975rem; opacity: 0.8; line-height: 1.8; }
     .de-key-diff {
@@ -534,7 +534,6 @@
       border-left: 4px solid var(--blue);
       padding: 2rem 2.5rem;
       margin-bottom: 3.5rem;
-      max-width: 820px;
     }
     .de-key-label {
       font-family: 'DM Mono', monospace;
@@ -574,7 +573,30 @@
     }
     .de-stat-unit { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--blue); opacity: 0.7; margin-bottom: 0.75rem; }
     .de-stat-desc { font-size: 0.85rem; color: var(--cream); opacity: 0.75; line-height: 1.6; }
-    .de-framework { max-width: 720px; margin-bottom: 2rem; }
+    .de-framework { margin-bottom: 2rem; }
+    .de-pullquote {
+      border-left: 4px solid var(--gold);
+      padding: 1.75rem 2.5rem;
+      margin: 3rem 0;
+      background: rgba(200,169,110,0.05);
+    }
+    .de-pullquote blockquote {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--cream);
+      margin: 0 0 0.75rem;
+    }
+    .de-pullquote cite {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      opacity: 0.8;
+      font-style: normal;
+    }
     .de-framework-label {
       font-family: 'DM Mono', monospace;
       font-size: 10px;
@@ -989,7 +1011,7 @@
 
   <div class="accordion-item" id="germany" style="background:var(--bg2)">
     <button class="accordion-header" aria-expanded="false" aria-controls="body-germany">
-      <span class="acc-title">Germany</span>
+      <span class="acc-title">The German Model</span>
       <span class="acc-desc">A Rehabilitative<br>Approach</span>
     </button>
     <div class="accordion-body" id="body-germany">
@@ -1030,6 +1052,11 @@
       <p>Under Section 64 of the German Criminal Code, courts are required to order therapeutic incarceration alongside standard sentencing for individuals with substance use disorder whose offenses are linked to their addiction. Treatment is not a diversion from the sentence — it is embedded within it.</p>
       <p>The legal foundation is the Resozialisierungsgebot: Germany's constitutional rehabilitation mandate, derived from the Basic Law's guarantee of human dignity. Unlike the US, where treatment access depends on facility budgets and administrator attitudes, the German system begins from the premise that a person leaving custody must be able to reintegrate into society. Treatment is not optional under that framework. It is obligatory.</p>
       <p>In practice, Section 64 places individuals in specialized forensic psychiatric facilities operating alongside conventional prisons. Participants receive individualized treatment plans, MAT where appropriate, vocational training, and structured reentry support. Completion of the program can reduce the original custodial sentence — creating a legal incentive structure the US system entirely lacks.</p>
+    </div>
+
+    <div class="de-pullquote reveal">
+      <blockquote>"The German goal is to help prisoners understand the environment into which they were born, the consequent anger and resentments that grew out of those formidable years."</blockquote>
+      <cite>Rosemary Jenkins &mdash; LA Progressive</cite>
     </div>
 
     <div class="contrast-block reveal" style="margin-top:3rem;">
@@ -1194,6 +1221,7 @@
         <li>World Prison Brief (2022). International incarceration rate comparisons.</li>
         <li>Bureau of Justice Statistics (2022). Prisoners in the United States.</li>
         <li>Smith v. Aroostook County, ACLU of Maine (2019). MAT access lawsuit, Maine county jail.</li>
+        <li>Jenkins, R. (n.d.). German prisons: A model for the US? <em>LA Progressive.</em> laprogressive.com/law-and-justice/german-prisons</li>
       </ul>
     </div>
   </footer>
