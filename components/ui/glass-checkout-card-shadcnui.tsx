@@ -51,7 +51,7 @@ export function GlassCheckoutCard({
 
           {/* Payment Methods */}
           <div className="mb-6 grid grid-cols-3 gap-2">
-            {["card", "paypal", "apple"].map((method) => (
+            {["card", "googlepay", "apple"].map((method) => (
               <button
                 key={method}
                 onClick={() => setPaymentMethod(method)}
@@ -62,11 +62,24 @@ export function GlassCheckoutCard({
                 )}
               >
                 {method === "card" && <CreditCard className="h-5 w-5" />}
-                {method === "paypal" && (
-                  <span className="font-bold italic text-sm">Pay</span>
+                {method === "googlepay" && (
+                  <svg viewBox="0 0 50 20" className="h-5 w-auto" aria-label="Google Pay">
+                    <text x="0" y="16" fontFamily="Arial,sans-serif" fontSize="14" fontWeight="bold">
+                      <tspan fill="#4285F4">G</tspan>
+                      <tspan fill="#EA4335">o</tspan>
+                      <tspan fill="#FBBC05">o</tspan>
+                      <tspan fill="#4285F4">g</tspan>
+                      <tspan fill="#34A853">l</tspan>
+                      <tspan fill="#EA4335">e</tspan>
+                      <tspan fill="currentColor" fontSize="13"> Pay</tspan>
+                    </text>
+                  </svg>
                 )}
                 {method === "apple" && (
-                  <span className="font-semibold text-sm">Pay</span>
+                  <svg viewBox="0 0 50 20" className="h-5 w-auto fill-current" aria-label="Apple Pay">
+                    <text x="0" y="16" fontFamily="-apple-system,BlinkMacSystemFont,sans-serif" fontSize="14" fontWeight="500" fill="currentColor"> Pay</text>
+                    <path d="M2 4.5C2.8 3.5 3.9 2.8 5 2.9c.1 1.2-.3 2.3-1 3.1-.7.8-1.7 1.4-2.8 1.3C1.1 6.1 1.2 5.4 2 4.5z" fill="currentColor"/>
+                  </svg>
                 )}
               </button>
             ))}
