@@ -129,10 +129,22 @@
     #scale { background: var(--bg); }
     .scale-layout {
       display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 4rem;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 5rem;
       align-items: start;
     }
+    .line-chart-wrap {
+      padding-top: 0.5rem;
+    }
+    .line-chart-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    #incarceration-chart svg { display: block; width: 100%; overflow: visible; }
     .stat-primary {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(4.5rem, 10vw, 8rem);
@@ -961,12 +973,19 @@
     <div class="accordion-body" id="body-scale">
       <div class="accordion-body-inner">
     <span class="section-label reveal">The Problem</span>
-    <div>
-      <div class="stat-primary reveal">542</div>
-      <p class="stat-sub reveal">per 100,000 people US state and federal incarceration rate (BJS, 2022)</p>
-      <div class="scale-body reveal">
-        <p>Approximately <strong>2 million people</strong> are incarcerated in the United States at any given time the highest rate of any country on earth. Behind that number is a population disproportionately living with substance use disorder, with fewer than one in ten receiving any form of evidence-based treatment while inside.</p>
-        <p>The gap between what treatment science recommends and what facilities deliver is not a resource problem. It is a policy problem and one that comparative research is positioned to solve.</p>
+    <div class="scale-layout">
+      <div>
+        <div class="stat-primary reveal">542</div>
+        <p class="stat-sub reveal">per 100,000 people US state and federal incarceration rate (BJS, 2022)</p>
+        <div class="scale-body reveal">
+          <p>Approximately <strong>2 million people</strong> are incarcerated in the United States at any given time the highest rate of any country on earth. Behind that number is a population disproportionately living with substance use disorder, with fewer than one in ten receiving any form of evidence-based treatment while inside.</p>
+          <p>The gap between what treatment science recommends and what facilities deliver is not a resource problem. It is a policy problem and one that comparative research is positioned to solve.</p>
+        </div>
+      </div>
+      <div class="line-chart-wrap reveal">
+        <p class="line-chart-title">US Incarceration Rate per 100,000 — 1900 to 2022</p>
+        <div id="incarceration-chart"></div>
+        <p class="bar-footnote" style="margin-top:0.75rem;">Sources: BJS National Prisoner Statistics; Vera Institute of Justice; World Prison Brief</p>
       </div>
     </div>
 
@@ -1461,6 +1480,81 @@
       });
     }, { threshold: 0.4 });
     if (barSection) barIO.observe(barSection);
+
+    // Incarceration Rate Line Chart
+    (function drawIncarcerationChart() {
+      const data = [
+        {y:1900,r:85},{y:1910,r:98},{y:1920,r:115},{y:1925,r:98},
+        {y:1930,r:131},{y:1935,r:122},{y:1940,r:131},{y:1945,r:98},
+        {y:1950,r:117},{y:1955,r:112},{y:1960,r:118},{y:1965,r:110},
+        {y:1970,r:97},{y:1975,r:111},{y:1980,r:139},{y:1985,r:202},
+        {y:1990,r:297},{y:1995,r:411},{y:2000,r:478},{y:2005,r:491},
+        {y:2008,r:504},{y:2010,r:500},{y:2015,r:459},{y:2019,r:419},
+        {y:2020,r:358},{y:2022,r:350}
+      ];
+      const container = document.getElementById('incarceration-chart');
+      if (!container) return;
+      const W = container.clientWidth || 500;
+      const H = 300;
+      const m = {top:16, right:16, bottom:36, left:48};
+      const iW = W - m.left - m.right;
+      const iH = H - m.top - m.bottom;
+
+      const svg = d3.select('#incarceration-chart').append('svg')
+        .attr('viewBox', `0 0 ${W} ${H}`)
+        .attr('width', '100%').attr('height', H);
+      const g = svg.append('g').attr('transform', `translate(${m.left},${m.top})`);
+
+      const x = d3.scaleLinear().domain([1900,2022]).range([0,iW]);
+      const y = d3.scaleLinear().domain([0,560]).range([iH,0]);
+
+      // Grid lines
+      y.ticks(5).forEach(t => {
+        g.append('line').attr('x1',0).attr('x2',iW)
+          .attr('y1',y(t)).attr('y2',y(t))
+          .attr('stroke','#2a2a2a').attr('stroke-dasharray','3,3');
+      });
+
+      // Area fill
+      g.append('path')
+        .datum(data)
+        .attr('fill','rgba(192,57,43,0.12)')
+        .attr('d', d3.area().x(d=>x(d.y)).y0(iH).y1(d=>y(d.r)).curve(d3.curveCatmullRom));
+
+      // Line
+      g.append('path')
+        .datum(data)
+        .attr('fill','none').attr('stroke','#c0392b').attr('stroke-width',2.5)
+        .attr('d', d3.line().x(d=>x(d.y)).y(d=>y(d.r)).curve(d3.curveCatmullRom));
+
+      // War on Drugs annotation
+      g.append('line')
+        .attr('x1',x(1980)).attr('x2',x(1980))
+        .attr('y1',0).attr('y2',iH)
+        .attr('stroke','#c8a96e').attr('stroke-width',1).attr('stroke-dasharray','4,3');
+      g.append('text')
+        .attr('x',x(1980)+5).attr('y',14)
+        .attr('fill','#c8a96e').attr('font-family','DM Mono, monospace')
+        .attr('font-size','9px').text('War on Drugs');
+
+      // X axis
+      g.append('g').attr('transform',`translate(0,${iH})`)
+        .call(d3.axisBottom(x).tickFormat(d3.format('d')).ticks(7))
+        .call(ax => {
+          ax.select('.domain').attr('stroke','#2a2a2a');
+          ax.selectAll('line').attr('stroke','#2a2a2a');
+          ax.selectAll('text').attr('fill','#888').attr('font-family','DM Mono, monospace').attr('font-size','10px');
+        });
+
+      // Y axis
+      g.append('g')
+        .call(d3.axisLeft(y).ticks(5))
+        .call(ax => {
+          ax.select('.domain').attr('stroke','#2a2a2a');
+          ax.selectAll('line').attr('stroke','#2a2a2a');
+          ax.selectAll('text').attr('fill','#888').attr('font-family','DM Mono, monospace').attr('font-size','10px');
+        });
+    })();
 
     // US Geographic Choropleth
     const STATES = {
