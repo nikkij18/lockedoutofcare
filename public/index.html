@@ -332,19 +332,37 @@
     .card-body { font-size: 0.85rem; line-height: 1.65; opacity: 0.85; margin-bottom: 0.75rem; }
     .card-source { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); }
     .pull-quote {
-      margin-top: 3rem;
-      padding-top: 2.5rem;
+      margin-top: 5rem;
+      padding: 5rem var(--pad-h);
       border-top: 1px solid var(--border);
-      max-width: 640px;
+      border-bottom: 1px solid var(--border);
+      margin-left: calc(-1 * var(--pad-h));
+      margin-right: calc(-1 * var(--pad-h));
+      text-align: center;
+      background: var(--bg2);
     }
     .pull-quote blockquote {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.4rem;
+      font-size: clamp(1.8rem, 4vw, 3rem);
       font-style: italic;
-      line-height: 1.5;
-      margin-bottom: 0.875rem;
+      line-height: 1.35;
+      margin-bottom: 1.5rem;
+      color: var(--cream);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .pull-quote cite { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); font-style: normal; }
+    .pull-quote cite { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); font-style: normal; letter-spacing: 0.05em; }
+    .pull-quote-body {
+      max-width: 600px;
+      margin: 2.5rem auto 0;
+      font-size: 0.925rem;
+      line-height: 1.85;
+      color: var(--cream);
+      opacity: 0.75;
+      text-align: left;
+    }
+    .pull-quote-body p + p { margin-top: 1rem; }
 
     /* Barriers */
     #barriers { background: var(--bg); }
@@ -731,6 +749,11 @@
     <div class="pull-quote reveal">
       <blockquote>"You're doing it because your freedom is on the line."</blockquote>
       <cite>Iacobelli et al., 2026 &nbsp;·&nbsp; on participation motivation in therapeutic incarceration programs</cite>
+      <div class="pull-quote-body">
+        <p>Incarceration strips away nearly every freedom a person has: freedom of movement, of association, of privacy, of time. What remains is often a narrow set of choices made within an institution that was not designed with health or recovery in mind.</p>
+        <p>For people with substance use disorder, one of those remaining choices is whether to engage with whatever treatment — if any — is available. The research is unambiguous: when treatment is offered, people participate. But in the US, access is not a right. It is a coincidence of geography, facility policy, and budget. Most people in custody with opioid use disorder receive nothing.</p>
+        <p>The quote above captures what participation often feels like from the inside: not a choice made in the interest of health, but a calculation made under coercion. That is not a therapeutic relationship. It is what happens when the only leverage available is freedom itself.</p>
+      </div>
     </div>
   </section>
 
