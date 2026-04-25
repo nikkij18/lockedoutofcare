@@ -193,15 +193,30 @@
     .map-legend {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      margin-top: 0.75rem;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.25rem;
       padding: 0 var(--pad-h);
       font-family: 'DM Mono', monospace;
-      font-size: 10px;
+      font-size: 13px;
       color: var(--muted);
     }
+    .map-legend-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+    .map-legend-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
     .legend-bar {
-      width: 100px; height: 8px; border-radius: 4px;
+      width: 200px; height: 12px; border-radius: 6px;
       background: linear-gradient(to right, rgb(30,8,8), rgb(192,57,43));
     }
 
@@ -709,10 +724,13 @@
         <p class="panel-rate" id="panel-rate"></p>
         <p class="panel-unit">per 100,000 people (BJS, 2022)</p>
       </div>
-      <div class="map-legend">
-        <span>Lower</span>
-        <div class="legend-bar"></div>
-        <span>Higher</span>
+      <div class="map-legend-wrap">
+        <p class="map-legend-title">Incarceration rate per 100,000 people</p>
+        <div class="map-legend">
+          <span>Lower</span>
+          <div class="legend-bar"></div>
+          <span>Higher</span>
+        </div>
       </div>
     </div>
   </section>
@@ -1115,6 +1133,23 @@
         .attr('stroke', '#3a3a3a')
         .attr('stroke-width', '1.5')
         .attr('pointer-events', 'none');
+
+      svg.selectAll('text.state-label')
+        .data(states.features.filter(d => {
+          const b = path.bounds(d);
+          return (b[1][0] - b[0][0]) > 18 && (b[1][1] - b[0][1]) > 18;
+        }))
+        .join('text')
+        .attr('class', 'state-label')
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'central')
+        .attr('x', d => path.centroid(d)[0])
+        .attr('y', d => path.centroid(d)[1])
+        .attr('font-family', 'DM Mono, monospace')
+        .attr('font-size', '8')
+        .attr('fill', 'rgba(255,255,255,0.55)')
+        .attr('pointer-events', 'none')
+        .text(d => FIPS[d.id.toString().padStart(2, '0')] || '');
     });
 
     document.addEventListener('click', (e) => {
