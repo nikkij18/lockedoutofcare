@@ -23,7 +23,6 @@ export default function DonatePage() {
           className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to site
         </a>
         <span className="text-sm tracking-widest uppercase text-muted-foreground font-[family-name:var(--font-dm-mono)]">
           Locked Out of Care
