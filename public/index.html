@@ -699,35 +699,46 @@
     /* Action */
     #action { background: var(--bg2); text-align: center; }
     #action h2 { font-size: clamp(2rem, 5vw, 3.25rem); margin-bottom: 1.25rem; }
-    .action-institution {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-      padding: 0.6rem 1.25rem;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      background: #ffffff;
-    }
-    .action-institution-logo {
-      display: block;
-      height: 32px;
-      width: auto;
-    }
-    .action-institution-divider {
-      width: 1px;
-      height: 20px;
-      background: rgba(0,0,0,0.2);
-    }
-    .action-institution-name {
+    .supporters-label {
       font-family: 'DM Mono', monospace;
-      font-size: 9px;
+      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #333;
-      line-height: 1.4;
-      text-align: left;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin: 3.5rem 0 1.5rem;
     }
+    .supporters-carousel {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      overflow: hidden;
+      padding: 1rem 0 2rem;
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .supporters-track {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      width: max-content;
+      animation: scroll-logos 30s linear infinite;
+    }
+    .supporters-track:hover { animation-play-state: paused; }
+    @keyframes scroll-logos {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .supporters-track img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(100%) brightness(1.8);
+      opacity: 0.6;
+      transition: filter 0.3s, opacity 0.3s;
+      flex-shrink: 0;
+    }
+    .supporters-track img:hover { filter: none; opacity: 1; }
     .action-sub {
       font-size: 0.975rem;
       color: var(--cream);
@@ -1211,13 +1222,6 @@
     <div class="accordion-body" id="body-action">
       <div class="accordion-body-inner">
     <span class="section-label reveal">Take Action</span>
-    <div class="reveal">
-      <div class="action-institution">
-        <img src="Georgetown-logo.png" alt="Georgetown University" class="action-institution-logo" style="height:32px;width:auto;display:block;">
-        <span class="action-institution-divider"></span>
-        <span class="action-institution-name">Department of Global Health<br>Prison Justice Initiative</span>
-      </div>
-    </div>
     <h2 class="reveal">Fund This Research</h2>
     <!-- FILL IN: CTA subheading 1–2 sentences on what funding enables and who to contact -->
     <p class="action-sub reveal">This research is currently seeking funding partners to support a 24-month comparative study. If you believe the treatment gap in US prisons is worth closing and that evidence is the fastest path there we want to hear from you.</p>
@@ -1228,6 +1232,35 @@
     </div>
     <!-- FILL IN: donation note amounts, payment method, fiscal sponsorship, or tax-deductibility info -->
     <p class="donation-note reveal">One-time donations of any amount directly support research access and dissemination.</p>
+
+    <div class="reveal">
+      <p class="supporters-label">Supported By</p>
+      <div class="supporters-carousel">
+        <div class="supporters-track">
+          <img src="Logos/Georgetown-logo.png" alt="Georgetown University">
+          <img src="Logos/NIH-Logo.png" alt="NIH">
+          <img src="Logos/Gates-foundation.png" alt="Gates Foundation">
+          <img src="Logos/WHO.png" alt="WHO">
+          <img src="Logos/DFG.png" alt="DFG">
+          <img src="Logos/aclu.png" alt="ACLU">
+          <img src="Logos/human-rights-watch.png" alt="Human Rights Watch">
+          <img src="Logos/MOR.webp" alt="MOR">
+          <img src="Logos/PJI+Positive+horizontal.webp" alt="Prison Justice Initiative">
+          <img src="Logos/SOH-logo.jpeg" alt="SOH">
+          <!-- duplicate for seamless loop -->
+          <img src="Logos/Georgetown-logo.png" alt="Georgetown University">
+          <img src="Logos/NIH-Logo.png" alt="NIH">
+          <img src="Logos/Gates-foundation.png" alt="Gates Foundation">
+          <img src="Logos/WHO.png" alt="WHO">
+          <img src="Logos/DFG.png" alt="DFG">
+          <img src="Logos/aclu.png" alt="ACLU">
+          <img src="Logos/human-rights-watch.png" alt="Human Rights Watch">
+          <img src="Logos/MOR.webp" alt="MOR">
+          <img src="Logos/PJI+Positive+horizontal.webp" alt="Prison Justice Initiative">
+          <img src="Logos/SOH-logo.jpeg" alt="SOH">
+        </div>
+      </div>
+    </div>
       </div>
     </div>
   </div>
