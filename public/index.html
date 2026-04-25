@@ -1760,19 +1760,14 @@
         const body = item.querySelector('.accordion-body');
         const isOpen = item.classList.contains('open');
 
-        // Close all
-        document.querySelectorAll('.accordion-item').forEach(i => {
-          i.classList.remove('open');
-          i.querySelector('.accordion-body').style.maxHeight = '0';
-          i.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
-        });
-
-        // Open clicked if it was closed
-        if (!isOpen) {
+        if (isOpen) {
+          item.classList.remove('open');
+          body.style.maxHeight = '0';
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
           item.classList.add('open');
           body.style.maxHeight = body.scrollHeight + 'px';
           btn.setAttribute('aria-expanded', 'true');
-          // Re-trigger reveal animations inside
           item.querySelectorAll('.reveal').forEach(el => {
             if (!el.classList.contains('visible')) el.classList.add('visible');
           });
