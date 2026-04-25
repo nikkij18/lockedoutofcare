@@ -699,6 +699,37 @@
     /* Action */
     #action { background: var(--bg2); text-align: center; }
     #action h2 { font-size: clamp(2rem, 5vw, 3.25rem); margin-bottom: 1.25rem; }
+    .action-institution {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      padding: 0.6rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: rgba(255,255,255,0.03);
+    }
+    .action-institution-logo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+    .action-institution-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+    }
+    .action-institution-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      line-height: 1.4;
+      text-align: left;
+    }
     .action-sub {
       font-size: 0.975rem;
       color: var(--cream);
@@ -1182,6 +1213,13 @@
     <div class="accordion-body" id="body-action">
       <div class="accordion-body-inner">
     <span class="section-label reveal">Take Action</span>
+    <div class="reveal">
+      <div class="action-institution">
+        <span class="action-institution-logo">Georgetown</span>
+        <span class="action-institution-divider"></span>
+        <span class="action-institution-name">Department of Global Health<br>Prison Justice Initiative</span>
+      </div>
+    </div>
     <h2 class="reveal">Fund This Research</h2>
     <!-- FILL IN: CTA subheading 1–2 sentences on what funding enables and who to contact -->
     <p class="action-sub reveal">This research is currently seeking funding partners to support a 24-month comparative study. If you believe the treatment gap in US prisons is worth closing and that evidence is the fastest path there we want to hear from you.</p>
