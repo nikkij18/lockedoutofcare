@@ -99,8 +99,29 @@
     /* Hero */
     #hero {
       min-height: 100vh;
-      background: linear-gradient(rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.8) 100%),
-                  url('IncarcerationPhoto.jpg') center/cover no-repeat;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero-photo {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(100%);
+      display: block;
+    }
+    .hero-content {
+      display: flex;
+      align-items: center;
+      padding: calc(var(--pad-v) + 60px) var(--pad-h) var(--pad-v);
+      background: var(--bg);
     }
     .hero-h1 {
       font-weight: 900;
@@ -594,6 +615,9 @@
       :root { --pad-v: 80px; --pad-h: 6vw; }
       nav { padding: 0 6vw; }
       .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-photo { position: relative; height: 60vw; min-height: 280px; }
+      .hero-content { padding: var(--pad-v) 6vw; }
       .scale-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .barriers-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .cost-grid { grid-template-columns: 1fr 1fr; }
@@ -623,15 +647,19 @@
 
   <!-- Hero -->
   <section id="hero">
-    <div class="max-copy">
-      <span class="section-label anim-1">A Funder Research Pitch</span>
-      <h1 class="hero-h1 anim-2">
-        <span class="line">Locked</span>
-        <span class="line line-em">Out of</span>
-        <span class="line">Care</span>
-      </h1>
-      <!-- FILL IN: composite character intro 1–2 sentences introducing the fictional individual (name, age, circumstance) who serves as the narrative anchor for the page -->
-      <p class="hero-subtext anim-3">Antoine entered federal custody at 13, three months into recovery from opioid use disorder. Inside, there was no medication, no program, no continuity. What existed in the community disappeared at intake, and so did his chance at staying clean.</p>
+    <div class="hero-photo">
+      <img src="IncarcerationPhoto.jpg" alt="Portrait of a woman standing near a waterfront, looking directly into the camera." />
+    </div>
+    <div class="hero-content">
+      <div class="max-copy">
+        <span class="section-label anim-1">A Funder Research Pitch</span>
+        <h1 class="hero-h1 anim-2">
+          <span class="line">Locked</span>
+          <span class="line line-em">Out of</span>
+          <span class="line">Care</span>
+        </h1>
+        <p class="hero-subtext anim-3">Antoine entered federal custody at 13, three months into recovery from opioid use disorder. Inside, there was no medication, no program, no continuity. What existed in the community disappeared at intake, and so did his chance at staying clean.</p>
+      </div>
     </div>
   </section>
 
