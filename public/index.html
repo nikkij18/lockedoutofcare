@@ -1130,8 +1130,13 @@
         .attr('stroke-width', '1.5')
         .attr('pointer-events', 'none');
 
+      const forceLabel = new Set(['DE', 'RI']);
+      const labelOffset = { FL: [18, 0], LA: [0, -14] };
+
       svg.selectAll('text.state-label')
         .data(states.features.filter(d => {
+          const abbr = FIPS[d.id.toString().padStart(2, '0')];
+          if (forceLabel.has(abbr)) return true;
           const b = path.bounds(d);
           return (b[1][0] - b[0][0]) > 18 && (b[1][1] - b[0][1]) > 18;
         }))
@@ -1139,8 +1144,16 @@
         .attr('class', 'state-label')
         .attr('text-anchor', 'middle')
         .attr('dominant-baseline', 'central')
-        .attr('x', d => path.centroid(d)[0])
-        .attr('y', d => path.centroid(d)[1])
+        .attr('x', d => {
+          const abbr = FIPS[d.id.toString().padStart(2, '0')];
+          const off = labelOffset[abbr] || [0, 0];
+          return path.centroid(d)[0] + off[0];
+        })
+        .attr('y', d => {
+          const abbr = FIPS[d.id.toString().padStart(2, '0')];
+          const off = labelOffset[abbr] || [0, 0];
+          return path.centroid(d)[1] + off[1];
+        })
         .attr('font-family', 'DM Mono, monospace')
         .attr('font-size', '8')
         .attr('fill', 'rgba(255,255,255,0.55)')
