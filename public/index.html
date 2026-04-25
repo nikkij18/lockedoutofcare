@@ -418,64 +418,46 @@
 
     /* Barriers */
     #barriers { background: var(--bg); }
-    .barriers-intro { max-width: 600px; margin-bottom: 3rem; }
-    .barriers-split {
-      margin-top: 5rem;
-      margin-left: calc(-1 * var(--pad-h));
-      margin-right: calc(-1 * var(--pad-h));
-      border-top: 1px solid var(--border);
-      background: var(--bg2);
+    .barriers-intro { margin-bottom: 3rem; }
+    .barriers-cols {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      min-height: 80vh;
+      gap: 5rem;
+      align-items: start;
     }
-    .barriers-split-text {
-      padding: 5rem var(--pad-h);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .barriers-split-text .anecdote-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-    .barriers-split-text h3 {
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      margin-bottom: 1.5rem;
-      color: var(--cream);
-    }
-    .barriers-split-text .anecdote-body {
-      font-size: 0.925rem;
-      line-height: 1.85;
-      color: var(--cream);
-      opacity: 0.78;
-    }
-    .barriers-split-text .anecdote-body p + p { margin-top: 1rem; }
-    .barriers-split-text .anecdote-source {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      color: var(--muted);
-      margin-top: 1.5rem;
-      line-height: 1.6;
-    }
-    .barriers-split-photo {
+    .barriers-photo-col {
       position: sticky;
-      top: 0;
-      height: 100vh;
+      top: 4.5rem;
+    }
+    .barriers-photo-wrap {
+      position: relative;
       overflow: hidden;
     }
-    .barriers-split-photo img {
+    .barriers-photo-wrap img {
       width: 100%;
-      height: 100%;
+      height: 65vh;
       object-fit: cover;
       object-position: center top;
       filter: grayscale(100%);
       display: block;
+    }
+    .barriers-anecdote {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.825rem;
+      line-height: 1.75;
+      color: var(--cream);
+      opacity: 0.72;
+    }
+    .barriers-anecdote p + p { margin-top: 0.75rem; }
+    .barriers-anecdote-source {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      margin-top: 0.75rem;
+      line-height: 1.5;
+      opacity: 1;
     }
     .barriers-intro h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
     .barriers-layout { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: start; }
@@ -965,7 +947,7 @@
         <span class="line line-em">Out of</span>
         <span class="line">Care</span>
       </h1>
-      <p class="hero-subtext anim-3">Antoine entered federal custody at 13, three months into recovery from opioid use disorder. Inside, there was no medication, no program, no continuity. What existed in the community disappeared at intake, and so did his chance at staying clean.</p>
+      <p class="hero-subtext anim-3"> Gabe Kortlever entered federal custody at 23, three months into recovery from opioid use disorder. Inside, there was no medication, no program, no continuity. What existed in the community disappeared at intake, and so did his chance at staying clean.</p>
     </div>
   </section>
 
@@ -1129,42 +1111,39 @@
       <h2>Why Treatment Doesn't Reach the People Who Need It</h2>
     </div>
 
-    <div class="timeline" style="max-width:720px;">
-      <div class="tl-item reveal">
-        <p class="tl-tag">Policy Barrier</p>
-        <h3>No Federal Mandate</h3>
-        <p>The US has no federal law requiring prisons or jails to provide MAT. Access is entirely facility-dependent creating a nationwide lottery where geography, not medical need, determines whether someone receives evidence-based care.</p>
+    <div class="barriers-cols">
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <p class="tl-tag">Policy Barrier</p>
+          <h3>No Federal Mandate</h3>
+          <p>The US has no federal law requiring prisons or jails to provide MAT. Access is entirely facility-dependent creating a nationwide lottery where geography, not medical need, determines whether someone receives evidence-based care.</p>
+        </div>
+        <div class="tl-item reveal">
+          <p class="tl-tag">Regulatory Barrier</p>
+          <h3>DEA Certification Requirements</h3>
+          <p>Prescribers historically required specialized DEA certification to dispense buprenorphine. Administrative burden, prescriber stigma, and institutional liability fears turned a regulatory requirement into a de facto wall against treatment inside correctional settings.</p>
+        </div>
+        <div class="tl-item reveal">
+          <p class="tl-tag">Cultural Barrier</p>
+          <h3>Stigma Within Facilities</h3>
+          <p>Correctional staff and administrators frequently characterize MAT as "substituting one drug for another." This cultural opposition documented across facilities operates as a barrier even where legal and regulatory authority for treatment exists.</p>
+        </div>
+        <div class="tl-item reveal">
+          <p class="tl-tag">Lived Experience</p>
+          <h3>Entrapped by Treatment</h3>
+          <p>Individuals on MAT at arrest may face forced withdrawal in pretrial detention. Those who begin treatment inside may lose access at release if no community provider is arranged a structural gap that turns treatment into a bridge to nowhere.</p>
+        </div>
       </div>
-      <div class="tl-item reveal">
-        <p class="tl-tag">Regulatory Barrier</p>
-        <h3>DEA Certification Requirements</h3>
-        <p>Prescribers historically required specialized DEA certification to dispense buprenorphine. Administrative burden, prescriber stigma, and institutional liability fears turned a regulatory requirement into a de facto wall against treatment inside correctional settings.</p>
-      </div>
-      <div class="tl-item reveal">
-        <p class="tl-tag">Cultural Barrier</p>
-        <h3>Stigma Within Facilities</h3>
-        <p>Correctional staff and administrators frequently characterize MAT as "substituting one drug for another." This cultural opposition documented across facilities operates as a barrier even where legal and regulatory authority for treatment exists.</p>
-      </div>
-      <div class="tl-item reveal">
-        <p class="tl-tag">Lived Experience</p>
-        <h3>Entrapped by Treatment</h3>
-        <p>Individuals on MAT at arrest may face forced withdrawal in pretrial detention. Those who begin treatment inside may lose access at release if no community provider is arranged a structural gap that turns treatment into a bridge to nowhere.</p>
-      </div>
-    </div>
-
-    <div class="barriers-split reveal">
-      <div class="barriers-split-text">
-        <span class="anecdote-label">Behind the Barrier</span>
-        <h3>He asked to continue his prescription. They said no.</h3>
-        <div class="anecdote-body">
+      <div class="barriers-photo-col reveal">
+        <div class="barriers-photo-wrap">
+          <img src="kurt-meyers.jpg" alt="A person representing the human experience behind this research">
+          <div class="photo-disclaimer">Photo used for illustrative purposes. The individual pictured is not Sy or any party to the cases described on this site, and is used only to represent the human experience behind this research.</div>
+        </div>
+        <div class="barriers-anecdote">
           <p>Sy had been managing his opioid use disorder with medication for years. When he was booked into Whatcom County Jail in Washington in 2017, he asked to continue his prescription. Staff refused — the jail's policy allowed MAT only for pregnant women.</p>
           <p>Sy sued. The county settled. But the policy that stopped him wasn't unusual. It was the rule.</p>
+          <p class="barriers-anecdote-source">Source: Kortlever et al. v. Whatcom County, ACLU of Washington, 2017–2018</p>
         </div>
-        <p class="anecdote-source">Source: Kortlever et al. v. Whatcom County, ACLU of Washington, 2017–2018</p>
-      </div>
-      <div class="barriers-split-photo">
-        <img src="kurt-meyers.jpg" alt="A person representing the human experience behind this research">
-        <div class="photo-disclaimer">Photo used for illustrative purposes. The individual pictured is not Sy or any party to the cases described on this site, and is used only to represent the human experience behind this research.</div>
       </div>
     </div>
       </div>
