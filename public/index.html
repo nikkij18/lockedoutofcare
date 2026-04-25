@@ -507,9 +507,8 @@
     .pitch-intro p { font-size: 0.975rem; opacity: 0.8; line-height: 1.8; }
     .cost-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.25rem;
-      max-width: 600px;
       margin-bottom: 4rem;
     }
     .cost-cell {
@@ -631,7 +630,7 @@
       .pull-quote-photo { position: relative; height: 60vw; min-height: 280px; }
       .scale-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .barriers-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .cost-grid { grid-template-columns: 1fr 1fr; }
+      .cost-grid { grid-template-columns: 1fr 1fr; margin-bottom: 3rem; }
       .why-cards { grid-template-columns: 1fr; }
       footer { grid-template-columns: 1fr; gap: 2rem; }
       .sources-list { grid-template-columns: 1fr; }
