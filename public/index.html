@@ -1555,6 +1555,59 @@
           ax.selectAll('line').attr('stroke','#2a2a2a');
           ax.selectAll('text').attr('fill','#888').attr('font-family','DM Mono, monospace').attr('font-size','10px');
         });
+
+      // Interactive scrubber
+      const bisect = d3.bisector(d => d.y).left;
+
+      const scrubLine = g.append('line')
+        .attr('y1',0).attr('y2',iH)
+        .attr('stroke','#f0ead8').attr('stroke-width',1)
+        .attr('stroke-dasharray','3,3').attr('opacity',0).attr('pointer-events','none');
+
+      const scrubDot = g.append('circle')
+        .attr('r',5).attr('fill','#c0392b')
+        .attr('stroke','#f0ead8').attr('stroke-width',1.5)
+        .attr('opacity',0).attr('pointer-events','none');
+
+      const labelG = g.append('g').attr('opacity',0).attr('pointer-events','none');
+      const labelRect = labelG.append('rect').attr('rx',2)
+        .attr('fill','#1a1a1a').attr('stroke','#3a3a3a').attr('stroke-width',1);
+      const labelYear = labelG.append('text')
+        .attr('font-family','DM Mono, monospace').attr('font-size','9px').attr('fill','#c8a96e');
+      const labelRate = labelG.append('text')
+        .attr('font-family','DM Mono, monospace').attr('font-size','12px').attr('font-weight','500').attr('fill','#f0ead8');
+
+      g.append('rect')
+        .attr('width',iW).attr('height',iH)
+        .attr('fill','transparent').style('cursor','crosshair')
+        .on('mousemove', function(event) {
+          const [mx] = d3.pointer(event, this);
+          const year = Math.max(1900, Math.min(2022, x.invert(mx)));
+          const i = bisect(data, year, 1);
+          const d0 = data[Math.max(0, i-1)];
+          const d1 = data[Math.min(data.length-1, i)];
+          const t = d1.y !== d0.y ? (year - d0.y) / (d1.y - d0.y) : 0;
+          const rate = Math.round(d0.r + t * (d1.r - d0.r));
+          const cx = x(year);
+          const cy = y(rate);
+
+          scrubLine.attr('x1',cx).attr('x2',cx).attr('opacity',1);
+          scrubDot.attr('cx',cx).attr('cy',cy).attr('opacity',1);
+
+          const flip = cx + iW - cx < 130;
+          const lx = flip ? cx - 106 : cx + 8;
+          const ly = Math.max(4, cy - 38);
+
+          labelRect.attr('x',lx).attr('y',ly).attr('width',98).attr('height',38);
+          labelYear.attr('x',lx+7).attr('y',ly+14).text(Math.round(year));
+          labelRate.attr('x',lx+7).attr('y',ly+30).text(rate + ' / 100k');
+          labelG.attr('opacity',1);
+        })
+        .on('mouseleave', function() {
+          scrubLine.attr('opacity',0);
+          scrubDot.attr('opacity',0);
+          labelG.attr('opacity',0);
+        });
     })();
 
     // US Geographic Choropleth
