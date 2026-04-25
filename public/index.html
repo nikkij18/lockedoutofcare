@@ -99,29 +99,10 @@
     /* Hero */
     #hero {
       min-height: 100vh;
-      padding: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-    .hero-photo {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .hero-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      filter: grayscale(100%);
-      display: block;
-    }
-    .hero-content {
       display: flex;
       align-items: center;
-      padding: calc(var(--pad-v) + 60px) var(--pad-h) var(--pad-v);
-      background: var(--bg);
+      background: linear-gradient(rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.8) 100%),
+                  url('IncarcerationPhoto.jpg') center/cover no-repeat;
     }
     .hero-h1 {
       font-weight: 900;
@@ -354,34 +335,50 @@
     .card-source { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); }
     .pull-quote {
       margin-top: 5rem;
-      padding: 5rem var(--pad-h);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
       margin-left: calc(-1 * var(--pad-h));
       margin-right: calc(-1 * var(--pad-h));
-      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       background: var(--bg2);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+    .pull-quote-photo {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .pull-quote-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(100%);
+      display: block;
+    }
+    .pull-quote-text {
+      padding: 5rem var(--pad-h);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .pull-quote blockquote {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
       font-style: italic;
       line-height: 1.35;
       margin-bottom: 1.5rem;
       color: var(--cream);
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
     }
     .pull-quote cite { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); font-style: normal; letter-spacing: 0.05em; }
     .pull-quote-body {
-      max-width: 600px;
-      margin: 2.5rem auto 0;
+      margin-top: 2.5rem;
       font-size: 0.925rem;
       line-height: 1.85;
       color: var(--cream);
       opacity: 0.75;
-      text-align: left;
     }
     .pull-quote-body p + p { margin-top: 1rem; }
 
@@ -615,9 +612,8 @@
       :root { --pad-v: 80px; --pad-h: 6vw; }
       nav { padding: 0 6vw; }
       .nav-links { display: none; }
-      #hero { grid-template-columns: 1fr; }
-      .hero-photo { position: relative; height: 60vw; min-height: 280px; }
-      .hero-content { padding: var(--pad-v) 6vw; }
+      .pull-quote { grid-template-columns: 1fr; min-height: auto; }
+      .pull-quote-photo { position: relative; height: 60vw; min-height: 280px; }
       .scale-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .barriers-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .cost-grid { grid-template-columns: 1fr 1fr; }
@@ -647,19 +643,14 @@
 
   <!-- Hero -->
   <section id="hero">
-    <div class="hero-photo">
-      <img src="IncarcerationPhoto.jpg" alt="Portrait of a woman standing near a waterfront, looking directly into the camera." />
-    </div>
-    <div class="hero-content">
-      <div class="max-copy">
-        <span class="section-label anim-1">A Funder Research Pitch</span>
-        <h1 class="hero-h1 anim-2">
-          <span class="line">Locked</span>
-          <span class="line line-em">Out of</span>
-          <span class="line">Care</span>
-        </h1>
-        <p class="hero-subtext anim-3">Antoine entered federal custody at 13, three months into recovery from opioid use disorder. Inside, there was no medication, no program, no continuity. What existed in the community disappeared at intake, and so did his chance at staying clean.</p>
-      </div>
+    <div class="max-copy">
+      <span class="section-label anim-1">A Funder Research Pitch</span>
+      <h1 class="hero-h1 anim-2">
+        <span class="line">Locked</span>
+        <span class="line line-em">Out of</span>
+        <span class="line">Care</span>
+      </h1>
+      <p class="hero-subtext anim-3">Antoine entered federal custody at 13, three months into recovery from opioid use disorder. Inside, there was no medication, no program, no continuity. What existed in the community disappeared at intake, and so did his chance at staying clean.</p>
     </div>
   </section>
 
@@ -775,12 +766,17 @@
     </div>
 
     <div class="pull-quote reveal">
-      <blockquote>"You're doing it because your freedom is on the line."</blockquote>
-      <cite>Iacobelli et al., 2026 &nbsp;·&nbsp; on participation motivation in therapeutic incarceration programs</cite>
-      <div class="pull-quote-body">
-        <p>Incarceration strips away nearly every freedom a person has: freedom of movement, of association, of privacy, of time. What remains is often a narrow set of choices made within an institution that was not designed with health or recovery in mind.</p>
-        <p>For people with substance use disorder, one of those remaining choices is whether to engage with whatever treatment — if any — is available. The research is unambiguous: when treatment is offered, people participate. But in the US, access is not a right. It is a coincidence of geography, facility policy, and budget. Most people in custody with opioid use disorder receive nothing.</p>
-        <p>The quote above captures what participation often feels like from the inside: not a choice made in the interest of health, but a calculation made under coercion. That is not a therapeutic relationship. It is what happens when the only leverage available is freedom itself.</p>
+      <div class="pull-quote-photo">
+        <img src="IncarcerationPhoto.jpg" alt="Portrait of a woman standing near a waterfront, looking directly into the camera." />
+      </div>
+      <div class="pull-quote-text">
+        <blockquote>"You're doing it because your freedom is on the line."</blockquote>
+        <cite>Iacobelli et al., 2026 &nbsp;·&nbsp; on participation motivation in therapeutic incarceration programs</cite>
+        <div class="pull-quote-body">
+          <p>Incarceration strips away nearly every freedom a person has: freedom of movement, of association, of privacy, of time. What remains is often a narrow set of choices made within an institution that was not designed with health or recovery in mind.</p>
+          <p>For people with substance use disorder, one of those remaining choices is whether to engage with whatever treatment — if any — is available. The research is unambiguous: when treatment is offered, people participate. But in the US, access is not a right. It is a coincidence of geography, facility policy, and budget. Most people in custody with opioid use disorder receive nothing.</p>
+          <p>The quote above captures what participation often feels like from the inside: not a choice made in the interest of health, but a calculation made under coercion. That is not a therapeutic relationship. It is what happens when the only leverage available is freedom itself.</p>
+        </div>
       </div>
     </div>
   </section>
