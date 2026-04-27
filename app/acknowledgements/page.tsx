@@ -3,12 +3,12 @@
 import { ArrowLeft } from "lucide-react";
 
 const PEOPLE = [
-  { name: "Antoin Quarles" },
-  { name: "Haywood Miles" },
-  { name: "Reverend Simons" },
-  { name: "Mark Lougney" },
-  { name: "Dr. Sinclair" },
-  { name: "Shannon Sisney" },
+  "Antoin Quarles",
+  "Haywood Miles",
+  "Reverend Simons",
+  "Mark Lougney",
+  "Dr. Sinclair",
+  "Shannon Sisney",
 ];
 
 export default function AcknowledgementsPage() {
@@ -42,7 +42,7 @@ export default function AcknowledgementsPage() {
         </span>
       </header>
 
-      <main className="flex-1 flex flex-col items-center px-6 py-20 max-w-4xl mx-auto w-full">
+      <main className="flex-1 flex flex-col items-center justify-center px-6 py-24 max-w-2xl mx-auto w-full text-center">
 
         {/* Label */}
         <p
@@ -66,8 +66,7 @@ export default function AcknowledgementsPage() {
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             color: "rgba(240,234,216,0.4)",
-            marginBottom: "1.25rem",
-            textAlign: "center",
+            marginBottom: "1rem",
           }}
         >
           Inspired by the Oscar-Nominated Documentary
@@ -78,8 +77,7 @@ export default function AcknowledgementsPage() {
             fontSize: "clamp(2rem, 5vw, 3.25rem)",
             fontWeight: 700,
             lineHeight: 1.15,
-            textAlign: "center",
-            marginBottom: "3rem",
+            marginBottom: "3.5rem",
             color: "#f0ead8",
           }}
         >
@@ -91,9 +89,8 @@ export default function AcknowledgementsPage() {
           style={{
             borderLeft: "2px solid #c8a96e",
             paddingLeft: "1.75rem",
-            marginBottom: "5rem",
-            maxWidth: "640px",
-            width: "100%",
+            marginBottom: "4rem",
+            textAlign: "left",
           }}
         >
           <p
@@ -101,7 +98,7 @@ export default function AcknowledgementsPage() {
               fontFamily: "var(--font-playfair)",
               fontStyle: "italic",
               fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
-              lineHeight: 1.75,
+              lineHeight: 1.8,
               color: "rgba(240,234,216,0.85)",
             }}
           >
@@ -111,77 +108,18 @@ export default function AcknowledgementsPage() {
           </p>
         </blockquote>
 
-        {/* People grid */}
-        <div
+        {/* Names */}
+        <p
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "2.5rem",
-            width: "100%",
-            marginBottom: "5rem",
+            fontFamily: "var(--font-playfair)",
+            fontSize: "1rem",
+            lineHeight: 2,
+            color: "rgba(240,234,216,0.6)",
+            marginBottom: "3rem",
           }}
         >
-          {PEOPLE.map((person) => (
-            <div
-              key={person.name}
-              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-            >
-              {/* Image placeholder */}
-              <div
-                style={{
-                  width: "100%",
-                  aspectRatio: "3 / 4",
-                  border: "1px dashed rgba(200,169,110,0.35)",
-                  borderRadius: "4px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "0.5rem",
-                  background: "rgba(255,255,255,0.02)",
-                }}
-              >
-                {/* Placeholder icon */}
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="rgba(200,169,110,0.3)"
-                  strokeWidth="1.5"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="8.5" cy="8.5" r="1.5" />
-                  <path d="M21 15l-5-5L5 21" />
-                </svg>
-                <span
-                  style={{
-                    fontFamily: "var(--font-dm-mono)",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "rgba(200,169,110,0.35)",
-                  }}
-                >
-                  Add photo
-                </span>
-              </div>
-
-              {/* Name */}
-              <p
-                style={{
-                  fontFamily: "var(--font-playfair)",
-                  fontSize: "1.1rem",
-                  fontWeight: 400,
-                  color: "#f0ead8",
-                  textAlign: "center",
-                }}
-              >
-                {person.name}
-              </p>
-            </div>
-          ))}
-        </div>
+          {PEOPLE.join(", ")}
+        </p>
 
         {/* Sign-off */}
         <p
@@ -190,7 +128,6 @@ export default function AcknowledgementsPage() {
             fontStyle: "italic",
             fontSize: "clamp(1.5rem, 4vw, 2.25rem)",
             color: "#c8a96e",
-            textAlign: "center",
           }}
         >
           Thank you.
