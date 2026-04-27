@@ -29,6 +29,13 @@ export default function DonatePage() {
         </span>
       </header>
 
+      {/* Disclaimer banner */}
+      <div className="bg-yellow-500/10 border-b border-yellow-500/30 px-6 py-3 text-center">
+        <p className="text-xs text-yellow-400/90 leading-relaxed">
+          <span className="font-semibold uppercase tracking-wider">Demo only</span> — This is not a real donation page. No payment is processed, no data is collected or saved, and no charge will occur. Enter any values to explore the interface.
+        </p>
+      </div>
+
       <main className="flex-1 flex items-center justify-center px-6 py-16">
         <AnimatePresence mode="wait">
           {done ? (
