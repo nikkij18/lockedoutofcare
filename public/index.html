@@ -776,6 +776,8 @@
     }
     .tstrip-phase h4 { font-size: 0.875rem; margin-bottom: 0.375rem; color: var(--cream); }
     .tstrip-phase p { font-size: 0.775rem; opacity: 0.65; line-height: 1.6; }
+    #gantt-chart { width: 100%; overflow: hidden; }
+    #gantt-chart svg { width: 100%; height: auto; display: block; overflow: visible; }
     .cost-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -1456,33 +1458,8 @@
         </div>
       </div>
 
-      <p class="section-label" style="margin: 2.5rem 0 1rem;">24-Month Timeline</p>
-      <div class="timeline-strip">
-        <div class="tstrip-phase">
-          <p class="tstrip-label">Phase 1</p>
-          <p class="tstrip-period">Months 1–6</p>
-          <h4>Foundation</h4>
-          <p>IRB approvals, facility partnerships, interview protocol development, administrative data access agreements</p>
-        </div>
-        <div class="tstrip-phase">
-          <p class="tstrip-label">Phase 2</p>
-          <p class="tstrip-period">Months 7–14</p>
-          <h4>Data Collection</h4>
-          <p>US and German site visits, interviews, administrative record extraction, policy document review</p>
-        </div>
-        <div class="tstrip-phase">
-          <p class="tstrip-label">Phase 3</p>
-          <p class="tstrip-period">Months 15–20</p>
-          <h4>Analysis</h4>
-          <p>Quantitative modeling, qualitative coding, cross-case synthesis, peer review of preliminary findings</p>
-        </div>
-        <div class="tstrip-phase">
-          <p class="tstrip-label">Phase 4</p>
-          <p class="tstrip-period">Months 21–24</p>
-          <h4>Dissemination</h4>
-          <p>Policy briefs for US Congressional staff, journal submission, funder report, open-access data release</p>
-        </div>
-      </div>
+      <p class="section-label" style="margin: 2.5rem 0 1.25rem;">24-Month Timeline</p>
+      <div id="gantt-chart"></div>
     </div>
 
     <p class="section-label reveal" style="margin-bottom:1.5rem;">Research Goals</p>
@@ -1982,6 +1959,157 @@
         target.querySelector('.accordion-header').setAttribute('aria-expanded', 'true');
       }
     }
+
+    // ── Gantt Chart ────────────────────────────────────────────────
+    (function () {
+      const tasks = [
+        { phase: 1, label: "IRB Applications & Approvals",       start: 1,  end: 3  },
+        { phase: 1, label: "Facility Partnership Development",    start: 2,  end: 5  },
+        { phase: 1, label: "Interview Protocol Development",      start: 3,  end: 5  },
+        { phase: 1, label: "Data Access Agreements",              start: 4,  end: 6  },
+        { phase: 2, label: "US Site Visits & Interviews",         start: 7,  end: 11 },
+        { phase: 2, label: "German Site Visits & Interviews",     start: 9,  end: 13 },
+        { phase: 2, label: "Administrative Record Extraction",    start: 8,  end: 14 },
+        { phase: 2, label: "Policy Document Review",              start: 7,  end: 14 },
+        { phase: 3, label: "Quantitative Modeling",               start: 15, end: 18 },
+        { phase: 3, label: "Qualitative Coding (Taguette)",       start: 15, end: 19 },
+        { phase: 3, label: "Cross-Case Synthesis",                start: 17, end: 20 },
+        { phase: 3, label: "Peer Review",                         start: 19, end: 20 },
+        { phase: 4, label: "Policy Briefs for Congress",          start: 21, end: 23 },
+        { phase: 4, label: "Journal Submission",                  start: 22, end: 24 },
+        { phase: 4, label: "Funder Report",                       start: 23, end: 24 },
+        { phase: 4, label: "Open-Access Data Release",            start: 24, end: 24 },
+      ];
+
+      const phaseColors = { 1: '#4A7FA5', 2: '#C9A84C', 3: '#B87C52', 4: '#5B8A6A' };
+      const phaseNames  = {
+        1: 'PHASE 1 — FOUNDATION',
+        2: 'PHASE 2 — DATA COLLECTION',
+        3: 'PHASE 3 — ANALYSIS',
+        4: 'PHASE 4 — DISSEMINATION',
+      };
+
+      const labelW       = 220;
+      const mTop         = 36;
+      const mRight       = 20;
+      const mBottom      = 28;
+      const rowH         = 22;
+      const rowGap       = 3;
+      const phaseGap     = 14;
+      const phaseHeadH   = 24;
+      const totalW       = 900;
+      const chartW       = totalW - labelW - mRight;
+
+      // compute y for each row, inserting phase headers
+      const rows = [];   // { type: 'header'|'task', phase, label?, start?, end?, y }
+      let cy = 0;
+      let lastPhase = 0;
+      tasks.forEach(t => {
+        if (t.phase !== lastPhase) {
+          if (lastPhase !== 0) cy += phaseGap;
+          rows.push({ type: 'header', phase: t.phase, y: cy });
+          cy += phaseHeadH + 4;
+          lastPhase = t.phase;
+        }
+        rows.push({ type: 'task', ...t, y: cy });
+        cy += rowH + rowGap;
+      });
+
+      const totalH = cy + mTop + mBottom;
+      const xScale = d3.scaleLinear().domain([0, 24]).range([0, chartW]);
+
+      const svg = d3.select('#gantt-chart').append('svg')
+        .attr('viewBox', `0 0 ${totalW} ${totalH}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
+
+      const g = svg.append('g').attr('transform', `translate(${labelW},${mTop})`);
+
+      // subtle vertical grid lines every month
+      for (let m = 0; m <= 24; m++) {
+        g.append('line')
+          .attr('x1', xScale(m)).attr('x2', xScale(m))
+          .attr('y1', 0).attr('y2', cy)
+          .attr('stroke', m % 6 === 0 ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.04)')
+          .attr('stroke-width', 1);
+      }
+
+      // month axis labels at M1, M7, M13, M19, M25 (end)
+      [{ m: 0, lbl: 'M1' }, { m: 6, lbl: 'M7' }, { m: 12, lbl: 'M13' },
+       { m: 18, lbl: 'M19' }, { m: 24, lbl: 'M24' }].forEach(({ m, lbl }) => {
+        g.append('text')
+          .attr('x', xScale(m))
+          .attr('y', -10)
+          .attr('text-anchor', 'middle')
+          .attr('fill', 'rgba(240,230,210,0.45)')
+          .attr('font-size', '10px')
+          .attr('font-family', "'DM Mono', monospace")
+          .attr('letter-spacing', '0.05em')
+          .text(lbl);
+      });
+
+      // bottom axis line
+      g.append('line')
+        .attr('x1', 0).attr('x2', chartW)
+        .attr('y1', cy).attr('y2', cy)
+        .attr('stroke', 'rgba(255,255,255,0.1)')
+        .attr('stroke-width', 1);
+
+      // render rows
+      rows.forEach(row => {
+        if (row.type === 'header') {
+          // phase label on left (in label column)
+          svg.append('text')
+            .attr('x', 0)
+            .attr('y', mTop + row.y + 16)
+            .attr('fill', phaseColors[row.phase])
+            .attr('font-size', '9px')
+            .attr('font-family', "'DM Mono', monospace")
+            .attr('letter-spacing', '0.12em')
+            .attr('font-weight', '700')
+            .text(phaseNames[row.phase]);
+        } else {
+          // task label
+          svg.append('text')
+            .attr('x', labelW - 10)
+            .attr('y', mTop + row.y + rowH / 2 + 4)
+            .attr('text-anchor', 'end')
+            .attr('fill', 'rgba(240,230,210,0.7)')
+            .attr('font-size', '10.5px')
+            .text(row.label);
+
+          // row bg
+          g.append('rect')
+            .attr('x', 0).attr('y', row.y)
+            .attr('width', chartW).attr('height', rowH)
+            .attr('fill', 'rgba(255,255,255,0.025)')
+            .attr('rx', 2);
+
+          // task bar
+          const bx = xScale(row.start - 1);
+          const bw = Math.max(xScale(row.end) - xScale(row.start - 1), 6);
+          g.append('rect')
+            .attr('x', bx).attr('y', row.y + 3)
+            .attr('width', bw).attr('height', rowH - 6)
+            .attr('fill', phaseColors[row.phase])
+            .attr('opacity', 0.82)
+            .attr('rx', 3);
+        }
+      });
+
+      // legend
+      const legendY = totalH - mBottom + 10;
+      let lx = labelW;
+      [1,2,3,4].forEach(p => {
+        const lg = svg.append('g').attr('transform', `translate(${lx},${legendY})`);
+        lg.append('rect').attr('width', 10).attr('height', 10).attr('y', -9)
+          .attr('fill', phaseColors[p]).attr('rx', 2);
+        lg.append('text').attr('x', 14).attr('fill', 'rgba(240,230,210,0.55)')
+          .attr('font-size', '9px').attr('font-family', "'DM Mono', monospace")
+          .attr('letter-spacing', '0.07em')
+          .text(phaseNames[p]);
+        lx += 205;
+      });
+    })();
   </script>
 </body>
 </html>
