@@ -82,6 +82,9 @@
     }
     .nav-links a:hover { color: var(--cream); }
     .nav-links a:hover::after { opacity: 1; }
+    .nav-links a.nav-ack { color: var(--gold); }
+    .nav-links a.nav-ack::after { background: var(--gold); }
+    .nav-links a.nav-ack:hover { color: var(--cream); }
 
     /* 4. Section layout */
     section { padding: var(--pad-v) var(--pad-h); position: relative; }
@@ -1057,6 +1060,7 @@
       <li><a href="#gaps">Gaps</a></li>
       <li><a href="#pitch">The Proposal</a></li>
       <li><a href="#action">Take Action</a></li>
+      <li><a href="/acknowledgements" class="nav-ack">Acknowledgements</a></li>
     </ul>
   </nav>
 
@@ -1581,7 +1585,7 @@
       <p class="footer-logo">Locked Out of Care</p>
       <p class="footer-copy">© 2026. A research pitch for academic and funder audiences.<br>Composite character used for illustrative purposes only.<br>All statistics drawn from peer-reviewed sources or federal data.</p>
       <p class="footer-copy" style="margin-top:1rem;border-top:1px solid var(--border);padding-top:1rem;">This research proposal is fictional and created for the purpose of the GLOH 3303 Final Project only. It does not represent an active study, solicitation of funds, or affiliation with any institution or organization.</p>
-      <p class="footer-copy" style="margin-top:1rem;"><a href="/acknowledgements" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,169,110,0.35);">Acknowledgements</a></p>
+      <p style="margin-top:1.5rem;"><a href="/acknowledgements" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,169,110,0.5);padding-bottom:2px;">Acknowledgements</a></p>
     </div>
     <div>
       <p class="sources-head">Sources</p>

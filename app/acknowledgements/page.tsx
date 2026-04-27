@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 
 const PEOPLE = [
@@ -107,6 +108,36 @@ export default function AcknowledgementsPage() {
             nightmare.
           </p>
         </blockquote>
+
+        {/* Photos */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "1rem",
+            width: "100%",
+            marginBottom: "3.5rem",
+          }}
+        >
+          <div style={{ borderRadius: "6px", overflow: "hidden", aspectRatio: "4/3" }}>
+            <Image
+              src="/Acknowledgements/IMG_1514.jpg"
+              alt="Community gathering"
+              width={600}
+              height={450}
+              style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.9)" }}
+            />
+          </div>
+          <div style={{ borderRadius: "6px", overflow: "hidden", aspectRatio: "4/3" }}>
+            <Image
+              src="/Acknowledgements/IMG_5784.JPEG"
+              alt="Community gathering"
+              width={600}
+              height={450}
+              style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.9)" }}
+            />
+          </div>
+        </div>
 
         {/* Names */}
         <p
