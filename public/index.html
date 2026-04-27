@@ -57,6 +57,9 @@
       letter-spacing: 0.05em;
       cursor: pointer;
       user-select: none;
+      background: none;
+      border: none;
+      padding: 0;
     }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
@@ -934,14 +937,58 @@
       .bar-country { min-width: 80px; font-size: 10px; }
     }
     @media print { nav { display: none; } }
+
+    /* ADA / WCAG AA */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      z-index: 10000;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 0.6rem 1.25rem;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: top 0.1s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+    button:focus-visible,
+    a:focus-visible,
+    [role="button"]:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .flip-card-inner { transition: none !important; }
+      .supporters-track { animation: none !important; }
+      .accordion-body { transition: none !important; }
+    }
   </style>
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <!-- Fixed Navigation -->
-  <nav>
-    <div class="nav-logo" id="nav-logo">Locked Out of Care</div>
-    <ul class="nav-links">
+  <nav aria-label="Main navigation">
+    <button class="nav-logo" id="nav-logo" aria-label="Return to top of page">Locked Out of Care</button>
+    <ul class="nav-links" role="list">
       <li><a href="#scale">The Problem</a></li>
       <li><a href="#findings">The Statistics</a></li>
       <li><a href="#barriers">Barriers</a></li>
@@ -950,6 +997,8 @@
       <li><a href="#action">Take Action</a></li>
     </ul>
   </nav>
+
+  <main id="main-content">
 
   <!-- Hero -->
   <section id="hero">
@@ -1146,7 +1195,7 @@
           <div class="photo-disclaimer">Photo used for illustrative purposes. The individual pictured is not Gabe or any party to the cases described on this site, and is used only to represent the human experience behind this research.</div>
         </div>
         <div class="barriers-anecdote">
-          <p>Gabe had been managing his opioid use disorder with medication for years. When he was booked into Whatcom County Jail in Washington in 2017, he asked to continue his prescription. Staff refused — the jail's policy allowed MAT only for pregnant women.</p>
+          <p>Gabe had been managing his opioid use disorder with medication for years. When he was booked into Whatcom County Jail in Washington in 2017, he asked to continue his prescription. Staff refused, the jail's policy allowed MAT only for pregnant women.</p>
           <p>Gabe sued. The county settled. But the policy that stopped him wasn't unusual. It was the rule.</p>
           <p class="barriers-anecdote-source">Source: Kortlever et al. v. Whatcom County, ACLU of Washington, 2017–2018</p>
         </div>
@@ -1305,19 +1354,19 @@
 
     <p class="section-label reveal" style="margin-bottom:1.5rem;">Research Goals</p>
     <div class="why-cards reveal">
-      <div class="flip-card">
+      <div class="flip-card" role="button" tabindex="0" aria-pressed="false">
         <div class="flip-card-inner">
           <div class="flip-card-front"><h3>Legal Reform Evidence</h3></div>
           <div class="flip-card-back"><h3>Legal Reform Evidence</h3><p>This research will generate the empirical record needed to make the case for federal MAT mandates in US correctional facilities — a policy argument currently without comparative grounding.</p></div>
         </div>
       </div>
-      <div class="flip-card">
+      <div class="flip-card" role="button" tabindex="0" aria-pressed="false">
         <div class="flip-card-inner">
           <div class="flip-card-front"><h3>A New Outcome Framework</h3></div>
           <div class="flip-card-back"><h3>A New Outcome Framework</h3><p>By bridging criminal-legal and recovery-science metrics, this project will propose a unified measurement standard that legislators, advocates, and facilities can adopt across jurisdictions.</p></div>
         </div>
       </div>
-      <div class="flip-card">
+      <div class="flip-card" role="button" tabindex="0" aria-pressed="false">
         <div class="flip-card-inner">
           <div class="flip-card-front"><h3>Cross-National Policy Blueprint</h3></div>
           <div class="flip-card-back"><h3>Cross-National Policy Blueprint</h3><p>Germany's model works but the US cannot import it wholesale. This research will identify which structural elements transfer and which require adaptation, producing an actionable blueprint for reformers.</p></div>
@@ -1327,19 +1376,19 @@
 
     <p class="section-label reveal" style="margin-top:3rem;margin-bottom:1.5rem;">Social Impact Goals</p>
     <div class="why-cards reveal">
-      <div class="flip-card">
+      <div class="flip-card" role="button" tabindex="0" aria-pressed="false">
         <div class="flip-card-inner">
           <div class="flip-card-front"><h3>Addiction as a Disease</h3></div>
           <div class="flip-card-back"><h3>Addiction as a Disease</h3><p>Advance a paradigm shift toward treating addiction as a medical condition rather than a moral failure. People with substance use disorder deserve patient-centered care, not punishment, regardless of where they are held.</p></div>
         </div>
       </div>
-      <div class="flip-card">
+      <div class="flip-card" role="button" tabindex="0" aria-pressed="false">
         <div class="flip-card-inner">
           <div class="flip-card-front"><h3>Reduce Social Stigma</h3></div>
           <div class="flip-card-back"><h3>Reduce Social Stigma</h3><p>Challenge the cultural narratives that dehumanize people in the carceral system. Evidence-based research is one of the most powerful tools for shifting public and institutional attitudes toward compassion and inclusion.</p></div>
         </div>
       </div>
-      <div class="flip-card">
+      <div class="flip-card" role="button" tabindex="0" aria-pressed="false">
         <div class="flip-card-inner">
           <div class="flip-card-front"><h3>Decrease Recidivism</h3></div>
           <div class="flip-card-back"><h3>Decrease Recidivism</h3><p>When people leave incarceration healthier, supported, and connected to care, they are less likely to return. Improved treatment access directly translates to fewer reincarceration cycles and better quality of life for individuals, families, and communities.</p></div>
@@ -1383,17 +1432,17 @@
           <img src="Logos/MOR.webp" alt="MOR">
           <img src="Logos/PJI+Positive+horizontal.webp" alt="Prison Justice Initiative">
           <img src="Logos/SOH-logo.jpeg" alt="SOH">
-          <!-- duplicate for seamless loop -->
-          <img src="Logos/Georgetown-logo.png" alt="Georgetown University">
-          <img src="Logos/NIH-Logo.png" alt="NIH" style="height:75px;">
-          <img src="Logos/Gates-foundation.png" alt="Gates Foundation">
-          <img src="Logos/WHO.png" alt="WHO">
-          <img src="Logos/DFG.png" alt="DFG">
-          <img src="Logos/aclu.png" alt="ACLU">
-          <img src="Logos/human-rights-watch.png" alt="Human Rights Watch">
-          <img src="Logos/MOR.webp" alt="MOR">
-          <img src="Logos/PJI+Positive+horizontal.webp" alt="Prison Justice Initiative">
-          <img src="Logos/SOH-logo.jpeg" alt="SOH">
+          <!-- duplicate for seamless loop — hidden from assistive tech -->
+          <img src="Logos/Georgetown-logo.png" alt="" aria-hidden="true">
+          <img src="Logos/NIH-Logo.png" alt="" aria-hidden="true" style="height:75px;">
+          <img src="Logos/Gates-foundation.png" alt="" aria-hidden="true">
+          <img src="Logos/WHO.png" alt="" aria-hidden="true">
+          <img src="Logos/DFG.png" alt="" aria-hidden="true">
+          <img src="Logos/aclu.png" alt="" aria-hidden="true">
+          <img src="Logos/human-rights-watch.png" alt="" aria-hidden="true">
+          <img src="Logos/MOR.webp" alt="" aria-hidden="true">
+          <img src="Logos/PJI+Positive+horizontal.webp" alt="" aria-hidden="true">
+          <img src="Logos/SOH-logo.jpeg" alt="" aria-hidden="true">
         </div>
       </div>
     </div>
@@ -1403,6 +1452,8 @@
 
   <!-- Footer -->
   </div><!-- /accordion -->
+
+  </main>
 
   <footer>
     <div>
@@ -1442,6 +1493,18 @@
     });
     document.getElementById('nav-logo').addEventListener('click', () => {
       document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Flip card keyboard support
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const flipped = card.classList.toggle('flipped');
+          card.setAttribute('aria-pressed', flipped);
+          card.querySelector('.flip-card-inner').style.transform = flipped ? 'rotateY(180deg)' : '';
+        }
+      });
     });
 
     // Shared IntersectionObserver for .reveal elements
